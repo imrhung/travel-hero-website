@@ -1,6 +1,8 @@
 <?php
 //Always provide a TRAILING SLASH (/) AFTER A PATH
-define('URL', 'http://ec2-54-200-123-156.us-west-2.compute.amazonaws.com/travelhero/');
+//define('URL', 'http://ec2-54-200-123-156.us-west-2.compute.amazonaws.com/travelhero/');
+
+define ('URL', 'http://localhost/travelhero/');
 
 define('LIBS', 'libs/');
 

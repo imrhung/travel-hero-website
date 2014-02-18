@@ -9,6 +9,12 @@ class Quest extends Controller {
     function index() {
         $this->view->render('travelhero/index');
     }
+    
+    // For the display of an quest detail
+    public function detail($id) {
+        $this->view->questId = $id;
+        $this->view->render('quest/detail'); // call View
+    }
 
     /* Last Edit 17 Oct 2013 */
 
@@ -129,6 +135,33 @@ class Quest extends Controller {
             $data['info'] = null;
         }
         echo json_encode($data);
+    }
+    
+    // Function to get list of quests by one user- NGO
+    // Not completed
+    public function questListInfobyUser() {
+        //http://localhost:1337/travelhero/quest/questListInfobyUser
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+        $result['info'] = null;
+
+        $currentPage = $_POST['currentPage'];
+        $pageSize = $_POST['pageSize'];
+        $userId = $_POST['userId'];
+
+        $resultCheck = $this->model->getQuestDatabyUser($currentPage, $pageSize, $userId);
+
+        if ($resultCheck) {
+            $result['code'] = 1;
+            $result['message'] = "Get Quest Success";
+            $result['info'] = $resultCheck;
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "Get Quest Fail";
+            $result['info'] = $resultCheck;
+        }
+        echo json_encode($result);
     }
 
 }
