@@ -168,6 +168,30 @@ class Quest extends Controller {
         }
         echo json_encode($result);
     }
+    
+    // Function to get number of quests by one parner- NGO
+    public function questCountbyUser() {
+        //http://localhost:1337/travelhero/quest/questListInfobyUser
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+        $result['info'] = null;
+
+        $userId = $_POST['userId'];
+
+        $resultCheck = $this->model->getQuestCountbyUser($userId);
+
+        if ($resultCheck) {
+            $result['code'] = 1;
+            $result['message'] = "Get Quest Success";
+            $result['info'] = (int) $resultCheck[0]->{"COUNT(*)"};
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "Get Quest Fail";
+            $result['info'] = $resultCheck;
+        }
+        echo json_encode($result);
+    }
 
     // Function to get list of quests by one parner- NGO
     public function questDetail() {

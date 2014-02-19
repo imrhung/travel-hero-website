@@ -17,7 +17,6 @@
         <script src="<?php echo URL ?>public/js/foundation/foundation.topbar.js"></script>
     </head>
     <body>
-        This is Quest page!
 
         <div class="row">
             <div class="large-12 columns">
@@ -54,7 +53,7 @@
                         console.log(data);
                         if (data.code === 1) {
                             // load successfully
-                            var customerList = "/";
+                            var customerList = "";
                             customerList += "<table class=\"table\">";
                             
                             customerList += "<tr>";
