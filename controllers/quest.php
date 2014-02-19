@@ -15,6 +15,12 @@ class Quest extends Controller {
         $this->view->questId = $id;
         $this->view->render('quest/detail'); // call View
     }
+    
+    // Edit one quest
+    public function edit($id) {
+        $this->view->questId = $id;
+        $this->view->render('quest/edit'); // call View
+    }
 
     /* Last Edit 17 Oct 2013 */
 
@@ -137,8 +143,7 @@ class Quest extends Controller {
         echo json_encode($data);
     }
     
-    // Function to get list of quests by one user- NGO
-    // Not completed
+    // Function to get list of quests by one parner- NGO
     public function questListInfobyUser() {
         //http://localhost:1337/travelhero/quest/questListInfobyUser
         $result = array();
@@ -164,5 +169,51 @@ class Quest extends Controller {
         echo json_encode($result);
     }
 
+    // Function to get list of quests by one parner- NGO
+    public function questDetail() {
+        //http://localhost:1337/travelhero/quest/questListInfobyUser
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+        $result['info'] = null;
+
+        $questId = $_POST['questId'];
+
+        $resultCheck = $this->model->getQuestDetail($questId);
+
+        if ($resultCheck) {
+            $result['code'] = 1;
+            $result['message'] = "Get Quest Success";
+            $result['info'] = $resultCheck;
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "Get Quest Fail";
+            $result['info'] = $resultCheck;
+        }
+        echo json_encode($result);
+    }
+    
+    public function updateQuestState() {
+        $state = $_POST['state'];
+        $questId = $_POST['questId'];
+        
+        $result = array();
+        $result['code'] = -1;
+        $result['message'] = "";
+        $result['info'] = null;
+
+        $resultCheck = $this->model->updateQuestState($questId, $state);
+
+        if ($resultCheck) {
+            $result['code'] = 1;
+            $result['message'] = "Get Quest Success";
+            $result['info'] = $resultCheck;
+        } else {
+            $result['code'] = 0;
+            $result['message'] = "Get Quest Fail";
+            $result['info'] = $resultCheck;
+        }
+        echo json_encode($result);
+    }
 }
 

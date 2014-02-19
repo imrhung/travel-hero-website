@@ -32,7 +32,7 @@
                     <section class="top-bar-section">
                         <!-- Right Nav Section -->
                         <ul class="right">
-                            <li class="active"><a href="#">Add new Quest</a></li>
+                            <li class="active"><a href="<?php echo URL ?>formquest/index.php">Add new Quest</a></li>
                         </ul>
 
                         <!-- Left Nav Section -->
@@ -56,14 +56,15 @@
 
         <script>
             $(document).foundation();
+
+
+            // TODO : Pagination: tut: http://www.sanwebe.com/2013/03/ajax-pagination-with-jquery-php
         </script>
 
         <script>
+            // TODO : Consider using popup : http://www.nicolashoening.de/?twocents&nr=8
             $(document).ready(function() {
-                console.log("data");
                 event.preventDefault();
-                console.log("data");
-                var $status = $("#quest-list");
                 $.ajax({
                     type: "POST",
                     url: "<?php echo URL ?>quest/questListInfobyUser",
@@ -75,25 +76,31 @@
                     dataType: 'json',
                     success: function(data) {
                         console.log(data);
-                        if (data.code == 1) {
+                        if (data.code === 1) {
                             // load successfully
                             var customerList = "";
                             customerList += "<table class=\"table\"><th>Quest</th><th>State</th>";
                             for (var i in data.info) {
                                 customerList += "<tr>";
-                                customerList += "<td>";
+                                customerList += "<td><a href=\"";
+                                customerList += "<?php echo URL ?>" + "quest/detail/" + data.info[i].id;
+                                customerList += "\">";
                                 customerList += data.info[i].name;
+                                customerList += "</a><iframe class=\"box\" src=\""
+                                customerList += "<?php echo URL ?>" + "quest/detail/" + data.info[i].id + "\" width = \"500px\" height = \"500px\"></iframe></td>";
+
+                                customerList += "<td><a href=\"";
+                                customerList += "<?php echo URL ?>" + "quest/edit/" + data.info[i].id;
+                                customerList += "\">Edit</a>";
                                 customerList += "</td>";
+
                                 customerList += "<td>";
+                                customerList += "<form name=\"active\">";
                                 if (data.info[i].state == 0) {
-                                    // Quest inactive
-                                    customerList += "Not verified";
-                                } else if (data.info[i].state == 2) {
-                                    // Quest completed
-                                    customerList += "Completed";
+                                    customerList += "<INPUT TYPE=\"checkbox\" NAME=\"tick\" onClick=\"return activate(" + data.info[i].id + ", checked)\">";
+                                    // ["+data.info[i].id+"]
                                 } else {
-                                    // Quest active
-                                    customerList += "Activated";
+                                    customerList += "<INPUT TYPE=\"checkbox\" NAME=\"tick\" onClick=\"return activate(" + data.info[i].id + ", checked)\" checked=\"true\">";
                                 }
                                 customerList += "</td>";
                                 customerList += "</tr>";
@@ -106,14 +113,47 @@
                 });
             });
 
+            function activate(questId, checked) {
+                if (checked) {
+                    if (confirm("Are you sure you want to activate this Quest?")) {
+                        // User confirm to activate the quest.
+                        activateQuest(questId, 1);
+                    } else {
+                        // TODO : uncheck the box if user cancel
+                    }
+                } else {
+                    if (confirm("Are you sure you want to deactivate this Quest?")) {
+                        // User confirm to activate the quest.
+                        activateQuest(questId, 0);
+                    } else {
+                        // TODO : uncheck the box if user cancel
+                    }
+                }
+            }
+
+            function activateQuest(questId, state) {
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo URL ?>quest/updateQuestState",
+                    data: {
+                        questId: questId,
+                        state: state,
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        console.log(data);
+                        if (data.code === 1) {
+                            // load successfully
+                        } else {
+                            // error
+                            alert("Some error occured. Refresh your page and try again!");
+                            // TODO : uncheck the box because of this error.
+                        }
+                    }
+                });
+            }
+
         </script>
-
-
-
-
-
-
-
 
 
     </body>
