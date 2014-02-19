@@ -110,6 +110,30 @@ class Quest_Model extends Model {
 
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
+    
+    // Get detail information of one quest
+    public function getQuestDetail($questId) {
+        $sql = 'SELECT * FROM quest WHERE id = :inQuestId';
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindparam(':inQuestId', $questId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $this->db = null;
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
+    
+    // Activate or deactivate state of quest
+    public function updateQuestState($questId, $state){
+        $sql = 'UPDATE quest SET state= :state WHERE id= :questId';
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindparam(':state', $state, PDO::PARAM_INT);
+        $stmt->bindparam(':questId', $questId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $this->db = null;
+
+        return "success";
+    }
 
 }
 
