@@ -19,7 +19,6 @@
         <script src="<?php echo URL ?>public/js/foundation/foundation.topbar.js"></script>
     </head>
     <body>
-        This is Quest page!
 
         <div class="row">
             <div class="large-12 columns">

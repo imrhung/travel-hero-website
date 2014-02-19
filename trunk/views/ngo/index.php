@@ -17,7 +17,6 @@
         <script src="<?php echo URL ?>public/js/foundation/foundation.topbar.js"></script>
     </head>
     <body>
-        This is NGO page!
 
         <div class="row">
             <div class="large-12 columns">
@@ -51,6 +50,7 @@
                 </ul>
             </div>
         </div>
+        <div id="pages"></div>
 
 
 
@@ -65,12 +65,66 @@
             // TODO : Consider using popup : http://www.nicolashoening.de/?twocents&nr=8
             $(document).ready(function() {
                 event.preventDefault();
+                // Load the quest list count:
+                var pageSize = 5;
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo URL ?>quest/questCountbyUser",
+                    data: {
+                        userId: 0,
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        console.log(data);
+                        if (data.code === 1) {
+                            // load successfully
+                            var pages = Math.ceil(data.info / pageSize);
+                            console.log(pages);
+                            var pagination = "";
+                            if (pages > 1) {
+                                pagination += '<ul class="paginate">';
+                                for (var i = 1; i <= pages; i++)
+                                {
+                                    pagination += '<li><a href="#" class="paginate_click" id="' + i + '-page">' + i + '</a></li>';
+                                }
+                                pagination += '</ul>';
+                            }
+                            document.getElementById("pages").innerHTML = pagination;
+
+                            loadQuestList(0, pageSize);
+                            $("#1-page").addClass('active');
+                        } else {
+                            // error
+                        }
+                        
+                        $(".paginate_click").click(function(e) {
+
+                            $("#quest-list").prepend('<div class="loading-indication"><img src="ajax-loader.gif" /> Loading...</div>');
+
+                            var clicked_id = $(this).attr("id").split("-"); //ID of clicked element, split() to get page number.
+                            var page_num = parseInt(clicked_id[0]); //clicked_id[0] holds the page number we need 
+
+                            $('.paginate_click').removeClass('active'); //remove any active class
+
+                            //post page number and load returned data into result element
+                            //notice (page_num-1), subtract 1 to get actual starting point
+                            loadQuestList(page_num - 1, pageSize);
+
+                            $(this).addClass('active'); //add active class to currently clicked element
+
+                            return false; //prevent going to herf link
+                        });
+                    }
+                });
+            });
+
+            function loadQuestList(currentPage, pageSize) {
                 $.ajax({
                     type: "POST",
                     url: "<?php echo URL ?>quest/questListInfobyUser",
                     data: {
-                        currentPage: 0,
-                        pageSize: 10,
+                        currentPage: currentPage,
+                        pageSize: pageSize,
                         userId: 0,
                     },
                     dataType: 'json',
@@ -79,7 +133,7 @@
                         if (data.code === 1) {
                             // load successfully
                             var customerList = "";
-                            customerList += "<table class=\"table\"><th>Quest</th><th>State</th>";
+                            customerList += "<table class=\"table\"><th>Quest</th><th></th><th>State</th>";
                             for (var i in data.info) {
                                 customerList += "<tr>";
                                 customerList += "<td><a href=\"";
@@ -111,7 +165,7 @@
                         }
                     }
                 });
-            });
+            }
 
             function activate(questId, checked) {
                 if (checked) {
@@ -146,7 +200,7 @@
                             // load successfully
                         } else {
                             // error
-                            alert("Some error occured. Refresh your page and try again!");
+                            alert("Some error occurred. Refresh your page and try again!");
                             // TODO : uncheck the box because of this error.
                         }
                     }

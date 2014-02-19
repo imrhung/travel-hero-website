@@ -111,6 +111,22 @@ class Quest_Model extends Model {
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
     
+    // Get number of quest for one specific user.
+    public function getQuestCountbyUser($userId) {
+        try {
+            $sql = 'SELECT COUNT(*) FROM quest WHERE quest_owner_id = :userId AND !isnull(parent_quest_id)';
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindparam(':userId', $userId, PDO::PARAM_INT);
+            
+            $stmt->execute();
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+        $this->db = null;
+
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+    
     // Get detail information of one quest
     public function getQuestDetail($questId) {
         $sql = 'SELECT * FROM quest WHERE id = :inQuestId';
