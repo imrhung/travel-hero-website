@@ -55,7 +55,7 @@
                         console.log(data);
                         if (data.code === 1) {
                             // load successfully
-                            var customerList = "/";
+                            var customerList = "";
                             customerList += "<table class=\"table\">";
                             
                             customerList += "<tr>";
