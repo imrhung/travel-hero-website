@@ -11,6 +11,7 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>assets/js/foundation/foundation.js" ></script>
         <script type="text/javascript" src="<?php echo base_url();?>assets/js/foundation/foundation.topbar.js" ></script>
+        <script type="text/javascript" src="<?php echo base_url();?>assets/js/vendor/nhpopup.js" ></script>
     </head>
     <body>
 
@@ -38,8 +39,10 @@
                 </nav>
             </div>
         </div>
-
-
+        <div>
+            <br>
+        </div>
+       
         <div class="row">
             <div class="large-12 columns">
                 <ul id="quest-list">
@@ -133,12 +136,16 @@
                             customerList += "<table class=\"table\"><th>Quest</th><th></th><th>State</th>";
                             for (var i in data.info) {
                                 customerList += "<tr>";
-                                customerList += "<td><a href=\"";
+                                customerList += "<td><a onmouseover=\"nhpup.popup($('#hidden-div"+i+"').html(), {'width': 400});\" href=\"";
                                 customerList += "<?php echo base_url() ?>" + "quest/detail/" + data.info[i].id;
                                 customerList += "\">";
                                 customerList += data.info[i].name;
-                                customerList += "</a><iframe class=\"box\" src=\""
-                                customerList += "<?php echo base_url() ?>" + "quest/detail/" + data.info[i].id + "\" width = \"500px\" height = \"500px\"></iframe></td>";
+                                customerList += "</a>";
+                                customerList += "<div class=\"hidden-div\" id=\"hidden-div"+i+"\" >  <table border=\"1\" width=\"400\"> <tr> <td>";
+                                customerList += "<img class=\"\" src=\""+data.info[i].image_url+"\"></img>";
+                                customerList += "<p>"+data.info[i].description+"</p>";
+                                customerList += "</td></tr></table></div>";
+                                customerList += "</td>";
 
                                 customerList += "<td><a href=\"";
                                 customerList += "<?php echo base_url() ?>" + "quest/edit/" + data.info[i].id;
