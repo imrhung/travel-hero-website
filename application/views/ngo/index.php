@@ -4,14 +4,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Travel hero</title>
 
-        <?php 
-            echo link_tag('assets/css/ngo.css'); 
-            echo link_tag('assets/css/foundation.css'); 
+        <?php
+        echo link_tag('assets/css/ngo.css');
+        echo link_tag('assets/css/simplePagination.css');
+        echo link_tag('assets/css/foundation.css');
         ?>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url();?>assets/js/foundation/foundation.js" ></script>
-        <script type="text/javascript" src="<?php echo base_url();?>assets/js/foundation/foundation.topbar.js" ></script>
-        <script type="text/javascript" src="<?php echo base_url();?>assets/js/vendor/nhpopup.js" ></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/foundation/foundation.js" ></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/foundation/foundation.topbar.js" ></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/vendor/nhpopup.js" ></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/vendor/jquery.simplePagination.js" ></script>
     </head>
     <body>
 
@@ -42,7 +44,7 @@
         <div>
             <br>
         </div>
-       
+
         <div class="row">
             <div class="large-12 columns">
                 <ul id="quest-list">
@@ -50,19 +52,16 @@
                 </ul>
             </div>
         </div>
-        <div id="pages"></div>
-
-
-
+        <table class="table no-borders">
+            <tr><td>
+                <div id="pages" class="pagination-centered"></div>
+                </td></tr>
+        </table>
         <script>
             $(document).foundation();
-
-
-            // TODO : Pagination: tut: http://www.sanwebe.com/2013/03/ajax-pagination-with-jquery-php
         </script>
 
         <script>
-            // TODO : Consider using popup : http://www.nicolashoening.de/?twocents&nr=8
             $(document).ready(function() {
                 event.preventDefault();
                 // Load the quest list count:
@@ -80,40 +79,22 @@
                             // load successfully
                             var pages = Math.ceil(data.info / pageSize);
                             console.log(pages);
-                            var pagination = "";
                             if (pages > 1) {
-                                pagination += '<ul class="paginate">';
-                                for (var i = 1; i <= pages; i++)
-                                {
-                                    pagination += '<li><a href="#" class="paginate_click" id="' + i + '-page">' + i + '</a></li>';
-                                }
-                                pagination += '</ul>';
+                                // Pagination with : http://flaviusmatis.github.io/simplePagination.js/
+                                $("#pages").pagination({
+                                    pages: pages,
+                                    cssStyle: 'light-theme',
+                                    onPageClick: function(pageNumber, event) {
+                                        $("#quest-list").prepend('<div class="loading-indication"><img src="assets/img/loading.png" /> Loading...</div>');
+                                        loadQuestList(pageNumber - 1, pageSize);
+                                    }
+                                });
                             }
-                            document.getElementById("pages").innerHTML = pagination;
-
                             loadQuestList(0, pageSize);
-                            $("#1-page").addClass('active');
+
                         } else {
                             // error
                         }
-                        
-                        $(".paginate_click").click(function(e) {
-
-                            $("#quest-list").prepend('<div class="loading-indication"><img src="assets/img/loading.png" /> Loading...</div>');
-
-                            var clicked_id = $(this).attr("id").split("-"); //ID of clicked element, split() to get page number.
-                            var page_num = parseInt(clicked_id[0]); //clicked_id[0] holds the page number we need 
-
-                            $('.paginate_click').removeClass('active'); //remove any active class
-
-                            //post page number and load returned data into result element
-                            //notice (page_num-1), subtract 1 to get actual starting point
-                            loadQuestList(page_num - 1, pageSize);
-
-                            $(this).addClass('active'); //add active class to currently clicked element
-
-                            return false; //prevent going to herf link
-                        });
                     }
                 });
             });
@@ -136,14 +117,14 @@
                             customerList += "<table class=\"table\"><th>Quest</th><th></th><th>State</th>";
                             for (var i in data.info) {
                                 customerList += "<tr>";
-                                customerList += "<td><a onmouseover=\"nhpup.popup($('#hidden-div"+i+"').html(), {'width': 400});\" href=\"";
+                                customerList += "<td><a onmouseover=\"nhpup.popup($('#hidden-div" + i + "').html(), {'width': 300});\" href=\"";
                                 customerList += "<?php echo base_url() ?>" + "quest/detail/" + data.info[i].id;
                                 customerList += "\">";
                                 customerList += data.info[i].name;
                                 customerList += "</a>";
-                                customerList += "<div class=\"hidden-div\" id=\"hidden-div"+i+"\" >  <table border=\"1\" width=\"400\"> <tr> <td>";
-                                customerList += "<img class=\"\" src=\""+data.info[i].image_url+"\"></img>";
-                                customerList += "<p>"+data.info[i].description+"</p>";
+                                customerList += "<div class=\"hidden-div\" id=\"hidden-div" + i + "\" >  <table border=\"1\" width=\"300\"> <tr> <td>";
+                                customerList += "<img class=\"\" src=\"" + data.info[i].image_url + "\"></img>";
+                                customerList += "" + data.info[i].description + "";
                                 customerList += "</td></tr></table></div>";
                                 customerList += "</td>";
 
@@ -152,7 +133,7 @@
                                 customerList += "\">Edit</a>";
                                 customerList += "</td>";
 
-                                customerList += "<td>";
+                                customerList += "<td class=\"center\">";
                                 customerList += "<form name=\"active\">";
                                 if (data.info[i].state == 0) {
                                     customerList += "<INPUT TYPE=\"checkbox\" NAME=\"tick\" onClick=\"return activate(" + data.info[i].id + ", checked)\">";
