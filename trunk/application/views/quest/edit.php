@@ -1,25 +1,4 @@
 <!-- TODO : Not completed -->
-
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Travel hero</title>
-
-        <?php
-        $cssname = explode('/', $name);
-        ?>
-        <link href="<?php echo URL ?>public/css/<?php echo $cssname[0] ?>.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="<?php echo URL ?>public/css/foundation.css" />
-
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-
-
-        <script src="<?php echo URL ?>public/js/foundation/foundation.js"></script>
-        <script src="<?php echo URL ?>public/js/foundation/foundation.topbar.js"></script>
-    </head>
-    <body>
-
         <div class="row">
             <div class="large-12 columns">
                 <nav class="top-bar" data-topbar>
@@ -99,14 +78,3 @@
             });
 
         </script>
-
-
-
-
-
-
-
-
-
-    </body>
-</html>

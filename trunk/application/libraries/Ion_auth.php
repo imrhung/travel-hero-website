@@ -61,10 +61,8 @@ class Ion_auth
 		$this->load->library('email');
 		$this->lang->load('ion_auth');
 		$this->load->helper('cookie');
-		$this->load->helper('language');
-		$this->load->helper('url');
 
-		// Load the session, CI2 as a library, CI3 uses it as a driver
+		//Load the session, CI2 as a library, CI3 uses it as a driver
 		if (substr(CI_VERSION, 0, 1) == '2')
 		{
 			$this->load->library('session');
@@ -142,7 +140,7 @@ class Ion_auth
 		if ( $this->ion_auth_model->forgotten_password($identity) )   //changed
 		{
 			// Get user information
-            $user = $this->where($this->config->item('identity', 'ion_auth'), $identity)->where('active', 1)->users()->row();  //changed to get_user_by_identity from email
+			$user = $this->where($this->config->item('identity', 'ion_auth'), $identity)->users()->row();  //changed to get_user_by_identity from email
 
 			if ($user)
 			{
@@ -383,7 +381,9 @@ class Ion_auth
 		$this->ion_auth_model->trigger_events('logout');
 
 		$identity = $this->config->item('identity', 'ion_auth');
-                $this->session->unset_userdata( array($identity => '', 'id' => '', 'user_id' => '') );
+		$this->session->unset_userdata($identity);
+		$this->session->unset_userdata('id');
+		$this->session->unset_userdata('user_id');
 
 		//delete the remember me cookies if they exist
 		if (get_cookie('identity'))
@@ -418,7 +418,9 @@ class Ion_auth
 	{
 		$this->ion_auth_model->trigger_events('logged_in');
 
-		return (bool) $this->session->userdata('identity');
+		$identity = $this->config->item('identity', 'ion_auth');
+
+		return (bool) $this->session->userdata($identity);
 	}
 
 	/**
@@ -456,14 +458,10 @@ class Ion_auth
 	/**
 	 * in_group
 	 *
-	 * @param mixed group(s) to check
-	 * @param bool user id
-	 * @param bool check if all groups is present, or any of the groups
-	 *
 	 * @return bool
 	 * @author Phil Sturgeon
 	 **/
-	public function in_group($check_group, $id=false, $check_all = false)
+	public function in_group($check_group, $id=false)
 	{
 		$this->ion_auth_model->trigger_events('in_group');
 
@@ -492,25 +490,13 @@ class Ion_auth
 		{
 			$groups = (is_string($value)) ? $groups_array : array_keys($groups_array);
 
-			/**
-			 * if !all (default), in_array
-			 * if all, !in_array
-			 */
-			if (in_array($value, $groups) xor $check_all)
+			if (in_array($value, $groups))
 			{
-				/**
-				 * if !all (default), true
-				 * if all, false
-				 */
-				return !$check_all;
+				return TRUE;
 			}
 		}
 
-		/**
-		 * if !all (default), false
-		 * if all, true
-		 */
-		return $check_all;
+		return FALSE;
 	}
 
 }

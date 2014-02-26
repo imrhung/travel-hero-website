@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database','ion_auth', 'Facebook_ion_auth');
+$autoload['libraries'] = array('template', 'ion_auth', 'form_validation', 'database', 'Facebook_ion_auth');
 
 
 /*
@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database','ion_auth', 'Facebook_ion_auth');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array();
+$autoload['helper'] = array('url');
 
 
 /*
@@ -80,7 +80,7 @@ $autoload['helper'] = array();
 |
 */
 
-$autoload['config'] = array();
+$autoload['config'] = array('app');
 
 
 /*

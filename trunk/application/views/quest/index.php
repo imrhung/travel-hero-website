@@ -1,18 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Travel hero</title>
 
-        <?php 
-            echo link_tag('assets/css/ngo.css'); 
-            echo link_tag('assets/css/foundation.css'); 
-        ?>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url();?>assets/js/foundation/foundation.js" ></script>
-        <script type="text/javascript" src="<?php echo base_url();?>assets/js/foundation/foundation.topbar.js" ></script>
-    </head>
-    <body>
         This is Quest index, need to be edited :)
         <div class="row">
             <div class="large-12 columns">
@@ -205,7 +191,3 @@
             }
 
         </script>
-
-
-    </body>
-</html>

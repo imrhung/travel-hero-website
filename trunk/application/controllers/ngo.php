@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Ngo extends CI_Controller {
+class Ngo extends App_Controller {
 
     function __construct() {
         parent::__construct();
@@ -24,10 +24,12 @@ class Ngo extends CI_Controller {
     }
 
     function index() {
-        $this->load->view('ngo/index');
+        $this->assets_css[] = "simplePagination.css";
+        $this->assets_css[] = "ngo.css";
+        $this->assets_js[] = "vendor/jquery.simplePagination.js";
+        $this->assets_js[] = "vendor/nhpopup.js";
+        $this->render_page('ngo/index');
     }
-    
-    
 
     /* 10 Oct 2013 */
     public function signinWithEmailInfo() {

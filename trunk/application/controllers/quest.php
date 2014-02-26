@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Quest extends CI_Controller {
+class Quest extends App_Controller {
 
     function __construct() {
         parent::__construct();
@@ -24,26 +24,29 @@ class Quest extends CI_Controller {
     }
 
     function index() {
-        $this->load->view('quest/index');
+        $this->render_page('quest/index');
     }
     
     // For the display of an quest detail
     public function detail($id) {
-        $this->data['questId'] = $id;
+        $this->assets_css[] = "quest.css";
+        $data['questId'] = $id;
         // call View
-        $this->load->view('quest/detail', $this->data);
+        $this->render_page('quest/detail', $data);
     }
     
     // Edit one quest
     public function edit($id) {
-        $this->view->questId = $id;
-        $this->view->render('quest/edit'); // call View
-        $this->load->view('quest/edit');
+        $this->assets_css[] = "quest.css";
+        $data['questId'] = $id;
+        // call View
+        $this->render_page('quest/edit', $data);
     }
 
     /* Last Edit 17 Oct 2013 */
 
     public function questInfo() {
+        echo "me";
         //http://localhost:1337/travelhero/user/questInfo
         $result = array();
         $result['code'] = -1;

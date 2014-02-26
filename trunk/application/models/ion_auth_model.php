@@ -12,11 +12,6 @@
 *
 * Created:  10.01.2009
 *
-* Last Change: 3.22.13
-*
-* Changelog:
-* * 3-22-13 - Additional entropy added - 52aa456eef8b60ad6754b31fbdcc77bb
-*
 * Description:  Modified auth system based on redux_auth with extensive customization.  This is basically what Redux Auth 2 should be.
 * Original Author name has been kept but that does not mean that the method has not been modified.
 *
@@ -173,6 +168,17 @@ class Ion_auth_model extends CI_Model
 		$this->load->config('ion_auth', TRUE);
 		$this->load->helper('cookie');
 		$this->load->helper('date');
+
+		//Load the session, CI2 as a library, CI3 uses it as a driver
+		if (substr(CI_VERSION, 0, 1) == '2')
+		{
+			$this->load->library('session');
+		}
+		else
+		{
+			$this->load->driver('session');
+		}
+
 		$this->lang->load('ion_auth');
 
 		//initialize db tables data
@@ -194,37 +200,12 @@ class Ion_auth_model extends CI_Model
 
 
 		//initialize messages and error
-		$this->messages    = array();
-		$this->errors      = array();
-		$delimiters_source = $this->config->item('delimiters_source', 'ion_auth');
-
-		//load the error delimeters either from the config file or use what's been supplied to form validation
-		if ($delimiters_source === 'form_validation')
-		{
-			//load in delimiters from form_validation
-			//to keep this simple we'll load the value using reflection since these properties are protected
-			$this->load->library('form_validation');
-			$form_validation_class = new ReflectionClass("CI_Form_validation");
-
-			$error_prefix = $form_validation_class->getProperty("_error_prefix");
-			$error_prefix->setAccessible(TRUE);
-			$this->error_start_delimiter = $error_prefix->getValue($this->form_validation);
-			$this->message_start_delimiter = $this->error_start_delimiter;
-
-			$error_suffix = $form_validation_class->getProperty("_error_suffix");
-			$error_suffix->setAccessible(TRUE);
-			$this->error_end_delimiter = $error_suffix->getValue($this->form_validation);
-			$this->message_end_delimiter = $this->error_end_delimiter;
-		}
-		else
-		{
-			//use delimiters from config
-			$this->message_start_delimiter = $this->config->item('message_start_delimiter', 'ion_auth');
-			$this->message_end_delimiter   = $this->config->item('message_end_delimiter', 'ion_auth');
-			$this->error_start_delimiter   = $this->config->item('error_start_delimiter', 'ion_auth');
-			$this->error_end_delimiter     = $this->config->item('error_end_delimiter', 'ion_auth');
-		}
-
+		$this->messages = array();
+		$this->errors = array();
+		$this->message_start_delimiter = $this->config->item('message_start_delimiter', 'ion_auth');
+		$this->message_end_delimiter   = $this->config->item('message_end_delimiter', 'ion_auth');
+		$this->error_start_delimiter   = $this->config->item('error_start_delimiter', 'ion_auth');
+		$this->error_end_delimiter     = $this->config->item('error_end_delimiter', 'ion_auth');
 
 		//initialize our hooks object
 		$this->_ion_hooks = new stdClass;
@@ -604,8 +585,9 @@ class Ion_auth_model extends CI_Model
 			);
 
 			$this->trigger_events('extra_where');
+			$this->db->update($this->tables['users'], $data, array($this->identity_column => $identity));
 
-			$successfully_changed_password_in_db = $this->db->update($this->tables['users'], $data, array($this->identity_column => $identity));
+			$successfully_changed_password_in_db = $this->db->affected_rows() == 1;
 			if ($successfully_changed_password_in_db)
 			{
 				$this->trigger_events(array('post_change_password', 'post_change_password_successful'));
@@ -691,7 +673,6 @@ class Ion_auth_model extends CI_Model
 	 * @return bool
 	 * @author Mathew
 	 * @updated Ryan
-	 * @updated 52aa456eef8b60ad6754b31fbdcc77bb
 	 **/
 	public function forgotten_password($identity)
 	{
@@ -701,17 +682,7 @@ class Ion_auth_model extends CI_Model
 			return FALSE;
 		}
 
-		//All some more randomness
-		$activation_code_part = "";
-		if(function_exists("openssl_random_pseudo_bytes")) {
-			$activation_code_part = openssl_random_pseudo_bytes(128);
-		}
-
-		for($i=0;$i<1024;$i++) {
-			$activation_code_part = sha1($activation_code_part . mt_rand() . microtime());
-		}
-
-		$key = $this->hash_code($activation_code_part.$identity);
+		$key = $this->hash_code(microtime().$identity);
 
 		$this->forgotten_password_code = $key;
 
@@ -977,15 +948,17 @@ class Ion_auth_model extends CI_Model
 	 */
 	function get_attempts_num($identity)
 	{
-        if ($this->config->item('track_login_attempts', 'ion_auth')) {
-            $ip_address = $this->_prepare_ip($this->input->ip_address());
-            $this->db->select('1', FALSE);
-            if ($this->config->item('track_login_ip_address', 'ion_auth')) $this->db->where('ip_address', $ip_address);
-            else if (strlen($identity) > 0) $this->db->or_where('login', $identity);
-            $qres = $this->db->get($this->tables['login_attempts']);
-            return $qres->num_rows();
-        }
-        return 0;
+		if ($this->config->item('track_login_attempts', 'ion_auth')) {
+			$ip_address = $this->_prepare_ip($this->input->ip_address());
+
+			$this->db->select('1', FALSE);
+			$this->db->where('ip_address', $ip_address);
+			if (strlen($identity) > 0) $this->db->or_where('login', $identity);
+
+			$qres = $this->db->get($this->tables['login_attempts']);
+			return $qres->num_rows();
+		}
+		return 0;
 	}
 
 	/**
@@ -1010,8 +983,8 @@ class Ion_auth_model extends CI_Model
 			$ip_address = $this->_prepare_ip($this->input->ip_address());
 
 			$this->db->select_max('time');
-            if ($this->config->item('track_login_ip_address', 'ion_auth')) $this->db->where('ip_address', $ip_address);
-			else if (strlen($identity) > 0) $this->db->or_where('login', $identity);
+			$this->db->where('ip_address', $ip_address);
+			if (strlen($identity) > 0) $this->db->or_where('login', $identity);
 			$qres = $this->db->get($this->tables['login_attempts'], 1);
 
 			if($qres->num_rows() > 0) {
@@ -1085,16 +1058,13 @@ class Ion_auth_model extends CI_Model
 		return $this;
 	}
 
-	public function like($like, $value = NULL, $position = 'both')
+	public function like($like, $value = NULL)
 	{
 		$this->trigger_events('like');
 
 		if (!is_array($like))
 		{
-			$like = array($like => array(
-				'value'    => $value,
-				'position' => $position,
-			));
+			$like = array($like => $value);
 		}
 
 		array_push($this->_ion_like, $like);
@@ -1607,7 +1577,7 @@ class Ion_auth_model extends CI_Model
 	}
 
 	/**
-	 * set_session
+	 * remember_user
 	 *
 	 * @return bool
 	 * @author jrmadsen67
@@ -1797,16 +1767,16 @@ class Ion_auth_model extends CI_Model
 			{
 				$this->set_error('group_already_exists');
 				return FALSE;
-			}
+			}	
 
-			$data['name'] = $group_name;
+			$data['name'] = $group_name;		
 		}
-
+		
 
 		// IMPORTANT!! Third parameter was string type $description; this following code is to maintain backward compatibility
 		// New projects should work with 3rd param as array
 		if (is_string($additional_data)) $additional_data = array('description' => $additional_data);
-
+		
 
 		//filter out any data passed that doesnt have a matching column in the groups table
 		//and merge the set group data and the additional data
