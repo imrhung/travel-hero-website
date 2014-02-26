@@ -22,7 +22,7 @@
 
       <p>
             <?php echo lang('edit_user_phone_label', 'phone');?> <br />
-            <?php echo form_input($phone);?>
+            <?php echo form_input($phone1);?>-<?php echo form_input($phone2);?>-<?php echo form_input($phone3);?>
       </p>
 
       <p>
@@ -35,28 +35,24 @@
             <?php echo form_input($password_confirm);?>
       </p>
 
-      <?php if ($this->ion_auth->is_admin()): ?>
-
-          <h3><?php echo lang('edit_user_groups_heading');?></h3>
-          <?php foreach ($groups as $group):?>
-              <label class="checkbox">
-              <?php
-                  $gID=$group['id'];
-                  $checked = null;
-                  $item = null;
-                  foreach($currentGroups as $grp) {
-                      if ($gID == $grp->id) {
-                          $checked= ' checked="checked"';
-                      break;
-                      }
-                  }
-              ?>
-              <input type="checkbox" name="groups[]" value="<?php echo $group['id'];?>"<?php echo $checked;?>>
-              <?php echo $group['name'];?>
-              </label>
-          <?php endforeach?>
-
-      <?php endif ?>
+	 <h3><?php echo lang('edit_user_groups_heading');?></h3>
+	<?php foreach ($groups as $group):?>
+	<label class="checkbox">
+	<?php
+		$gID=$group['id'];
+		$checked = null;
+		$item = null;
+		foreach($currentGroups as $grp) {
+			if ($gID == $grp->id) {
+				$checked= ' checked="checked"';
+			break;
+			}
+		}
+	?>
+	<input type="checkbox" name="groups[]" value="<?php echo $group['id'];?>"<?php echo $checked;?>>
+	<?php echo $group['name'];?>
+	</label>
+	<?php endforeach?>
 
       <?php echo form_hidden('id', $user->id);?>
       <?php echo form_hidden($csrf); ?>

@@ -7,7 +7,7 @@
 *         @benedmunds
 *
 * Author: Daniel Davis
-*         @ourmaninjapan
+*         daniel@kyokodaniel.com
 *
 * Location: http://github.com/benedmunds/ion_auth/
 *
@@ -39,6 +39,7 @@ $lang['index_groups_th']         = 'Groups';
 $lang['index_status_th']         = 'Status';
 $lang['index_action_th']         = 'Action';
 $lang['index_active_link']       = 'Active';
+$lang['index_inactive_link']     = 'Inactive';
 $lang['index_inactive_link']     = 'Inactive';
 $lang['index_create_user_link']  = 'Create a new user';
 $lang['index_create_group_link'] = 'Create a new group';
@@ -156,7 +157,7 @@ $lang['forgot_password_submit_btn']              = 'Submit';
 $lang['forgot_password_validation_email_label']  = 'Email Address';
 $lang['forgot_password_username_identity_label'] = 'Username';
 $lang['forgot_password_email_identity_label']    = 'Email';
-$lang['forgot_password_email_not_found']         = 'No record of that email address.';
+
 
 // Reset Password
 $lang['reset_password_heading']                               = 'Change Password';
@@ -165,3 +166,18 @@ $lang['reset_password_new_password_confirm_label']            = 'Confirm New Pas
 $lang['reset_password_submit_btn']                            = 'Change';
 $lang['reset_password_validation_new_password_label']         = 'New Password';
 $lang['reset_password_validation_new_password_confirm_label'] = 'Confirm New Password';
+
+// Activation Email
+$lang['email_activate_heading']    = 'Activate account for %s';
+$lang['email_activate_subheading'] = 'Please click this link to %s.';
+$lang['email_activate_link']       = 'Activate Your Account';
+
+// Forgot Password Email
+$lang['email_forgot_password_heading']    = 'Reset Password for %s';
+$lang['email_forgot_password_subheading'] = 'Please click this link to %s.';
+$lang['email_forgot_password_link']       = 'Reset Your Password';
+
+// New Password Email
+$lang['email_new_password_heading']    = 'New Password for %s';
+$lang['email_new_password_subheading'] = 'Your password has been reset to: %s';
+
