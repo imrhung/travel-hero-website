@@ -77,7 +77,9 @@ class App_Controller extends CI_Controller
         $this->assets_css = array(
             'bootstrap.min.css',
             'app.css',
-            'bootstrap-responsive.min.css'
+            'bootstrap-responsive.min.css',
+            'font-awesome.min.css',
+            'sb-admin.css',
             );
         $this->assets_js = array(
             'jquery-1.9.1.min.js',

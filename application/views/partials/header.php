@@ -1,4 +1,4 @@
-<div class="navbar navbar-default navbar-fixed-top">
+<div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
 
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <div class="navbar-header"><a class="navbar-brand" href="<?php echo site_url() ?>">Hero</a></div>
+        <div class="navbar-header"><a class="navbar-brand" href="<?php echo site_url() ?>">Travel Hero</a></div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="<?php echo ($current_section == 'home') ? 'active' : '' ?>"><a href="<?php echo site_url('ngo') ?>">Home</a></li>

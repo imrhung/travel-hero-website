@@ -9860,3 +9860,131 @@ DEBUG - 2014-02-26 17:17:18 --> Language file loaded: language/english/auth_lang
 DEBUG - 2014-02-26 17:17:18 --> Helper loaded: language_helper
 DEBUG - 2014-02-26 17:17:18 --> Final output sent to browser
 DEBUG - 2014-02-26 17:17:18 --> Total execution time: 3.2053
+DEBUG - 2014-02-26 18:10:45 --> Config Class Initialized
+DEBUG - 2014-02-26 18:10:46 --> Hooks Class Initialized
+DEBUG - 2014-02-26 18:10:46 --> Utf8 Class Initialized
+DEBUG - 2014-02-26 18:10:46 --> UTF-8 Support Enabled
+DEBUG - 2014-02-26 18:10:46 --> URI Class Initialized
+DEBUG - 2014-02-26 18:10:46 --> Router Class Initialized
+DEBUG - 2014-02-26 18:10:46 --> Output Class Initialized
+DEBUG - 2014-02-26 18:10:46 --> Security Class Initialized
+DEBUG - 2014-02-26 18:10:46 --> Input Class Initialized
+DEBUG - 2014-02-26 18:10:46 --> Global POST and COOKIE data sanitized
+DEBUG - 2014-02-26 18:10:46 --> Language Class Initialized
+DEBUG - 2014-02-26 18:10:46 --> Language Class Initialized
+DEBUG - 2014-02-26 18:10:46 --> Config Class Initialized
+DEBUG - 2014-02-26 18:10:46 --> Loader Class Initialized
+DEBUG - 2014-02-26 18:10:46 --> Config file loaded: application/config/app.php
+DEBUG - 2014-02-26 18:10:47 --> Helper loaded: url_helper
+DEBUG - 2014-02-26 18:10:47 --> Database Driver Class Initialized
+DEBUG - 2014-02-26 18:10:48 --> User Agent Class Initialized
+DEBUG - 2014-02-26 18:10:48 --> Template Class Initialized
+DEBUG - 2014-02-26 18:10:48 --> Config file loaded: application/config/ion_auth.php
+DEBUG - 2014-02-26 18:10:48 --> Email Class Initialized
+DEBUG - 2014-02-26 18:10:48 --> Language file loaded: language/english/ion_auth_lang.php
+DEBUG - 2014-02-26 18:10:48 --> Helper loaded: cookie_helper
+DEBUG - 2014-02-26 18:10:48 --> Session Class Initialized
+DEBUG - 2014-02-26 18:10:48 --> Helper loaded: string_helper
+DEBUG - 2014-02-26 18:10:48 --> Encrypt Class Initialized
+DEBUG - 2014-02-26 18:10:48 --> Session routines successfully run
+DEBUG - 2014-02-26 18:10:49 --> Model Class Initialized
+DEBUG - 2014-02-26 18:10:49 --> Model Class Initialized
+DEBUG - 2014-02-26 18:10:49 --> Helper loaded: date_helper
+DEBUG - 2014-02-26 18:10:49 --> Helper loaded: form_helper
+DEBUG - 2014-02-26 18:10:49 --> Form Validation Class Initialized
+DEBUG - 2014-02-26 18:10:49 --> Controller Class Initialized
+DEBUG - 2014-02-26 18:10:49 --> Helper loaded: html_helper
+DEBUG - 2014-02-26 18:10:49 --> Language file loaded: language/english/auth_lang.php
+DEBUG - 2014-02-26 18:10:49 --> Helper loaded: language_helper
+DEBUG - 2014-02-26 18:10:49 --> File loaded: application/views/partials/flash_messages.php
+DEBUG - 2014-02-26 18:10:50 --> File loaded: application/views/partials/header.php
+DEBUG - 2014-02-26 18:10:50 --> File loaded: application/views/partials/footer.php
+DEBUG - 2014-02-26 18:10:50 --> File loaded: application/views/ngo/index.php
+DEBUG - 2014-02-26 18:10:50 --> File loaded: application/views/layouts/default.php
+DEBUG - 2014-02-26 18:10:50 --> Final output sent to browser
+DEBUG - 2014-02-26 18:10:50 --> Total execution time: 4.3108
+DEBUG - 2014-02-26 18:10:55 --> Config Class Initialized
+DEBUG - 2014-02-26 18:10:55 --> Hooks Class Initialized
+DEBUG - 2014-02-26 18:10:55 --> Utf8 Class Initialized
+DEBUG - 2014-02-26 18:10:55 --> UTF-8 Support Enabled
+DEBUG - 2014-02-26 18:10:55 --> URI Class Initialized
+DEBUG - 2014-02-26 18:10:55 --> Router Class Initialized
+DEBUG - 2014-02-26 18:10:55 --> Output Class Initialized
+DEBUG - 2014-02-26 18:10:55 --> Security Class Initialized
+DEBUG - 2014-02-26 18:10:55 --> Input Class Initialized
+DEBUG - 2014-02-26 18:10:56 --> Global POST and COOKIE data sanitized
+DEBUG - 2014-02-26 18:10:56 --> Language Class Initialized
+DEBUG - 2014-02-26 18:10:56 --> Language Class Initialized
+DEBUG - 2014-02-26 18:10:56 --> Config Class Initialized
+DEBUG - 2014-02-26 18:10:56 --> Loader Class Initialized
+DEBUG - 2014-02-26 18:10:56 --> Config file loaded: application/config/app.php
+DEBUG - 2014-02-26 18:10:56 --> Helper loaded: url_helper
+DEBUG - 2014-02-26 18:10:56 --> Database Driver Class Initialized
+DEBUG - 2014-02-26 18:10:57 --> User Agent Class Initialized
+DEBUG - 2014-02-26 18:10:57 --> Template Class Initialized
+DEBUG - 2014-02-26 18:10:57 --> Config file loaded: application/config/ion_auth.php
+DEBUG - 2014-02-26 18:10:57 --> Email Class Initialized
+DEBUG - 2014-02-26 18:10:58 --> Language file loaded: language/english/ion_auth_lang.php
+DEBUG - 2014-02-26 18:10:58 --> Helper loaded: cookie_helper
+DEBUG - 2014-02-26 18:10:58 --> Session Class Initialized
+DEBUG - 2014-02-26 18:10:58 --> Helper loaded: string_helper
+DEBUG - 2014-02-26 18:10:58 --> Encrypt Class Initialized
+DEBUG - 2014-02-26 18:10:58 --> Session routines successfully run
+DEBUG - 2014-02-26 18:10:58 --> Model Class Initialized
+DEBUG - 2014-02-26 18:10:58 --> Model Class Initialized
+DEBUG - 2014-02-26 18:10:58 --> Helper loaded: date_helper
+DEBUG - 2014-02-26 18:10:58 --> Helper loaded: form_helper
+DEBUG - 2014-02-26 18:10:58 --> Form Validation Class Initialized
+DEBUG - 2014-02-26 18:10:58 --> Controller Class Initialized
+DEBUG - 2014-02-26 18:10:59 --> Helper loaded: html_helper
+DEBUG - 2014-02-26 18:10:59 --> Model Class Initialized
+DEBUG - 2014-02-26 18:10:59 --> Language file loaded: language/english/auth_lang.php
+DEBUG - 2014-02-26 18:10:59 --> Helper loaded: language_helper
+DEBUG - 2014-02-26 18:10:59 --> Final output sent to browser
+DEBUG - 2014-02-26 18:10:59 --> Total execution time: 4.1931
+DEBUG - 2014-02-26 18:11:00 --> Config Class Initialized
+DEBUG - 2014-02-26 18:11:00 --> Hooks Class Initialized
+DEBUG - 2014-02-26 18:11:00 --> Utf8 Class Initialized
+DEBUG - 2014-02-26 18:11:00 --> UTF-8 Support Enabled
+DEBUG - 2014-02-26 18:11:00 --> URI Class Initialized
+DEBUG - 2014-02-26 18:11:00 --> Router Class Initialized
+ERROR - 2014-02-26 18:11:00 --> 404 Page Not Found --> 
+DEBUG - 2014-02-26 18:11:00 --> Config Class Initialized
+DEBUG - 2014-02-26 18:11:00 --> Hooks Class Initialized
+DEBUG - 2014-02-26 18:11:01 --> Utf8 Class Initialized
+DEBUG - 2014-02-26 18:11:01 --> UTF-8 Support Enabled
+DEBUG - 2014-02-26 18:11:01 --> URI Class Initialized
+DEBUG - 2014-02-26 18:11:01 --> Router Class Initialized
+DEBUG - 2014-02-26 18:11:01 --> Output Class Initialized
+DEBUG - 2014-02-26 18:11:01 --> Security Class Initialized
+DEBUG - 2014-02-26 18:11:01 --> Input Class Initialized
+DEBUG - 2014-02-26 18:11:01 --> Global POST and COOKIE data sanitized
+DEBUG - 2014-02-26 18:11:01 --> Language Class Initialized
+DEBUG - 2014-02-26 18:11:01 --> Language Class Initialized
+DEBUG - 2014-02-26 18:11:01 --> Config Class Initialized
+DEBUG - 2014-02-26 18:11:01 --> Loader Class Initialized
+DEBUG - 2014-02-26 18:11:01 --> Config file loaded: application/config/app.php
+DEBUG - 2014-02-26 18:11:01 --> Helper loaded: url_helper
+DEBUG - 2014-02-26 18:11:01 --> Database Driver Class Initialized
+DEBUG - 2014-02-26 18:11:03 --> User Agent Class Initialized
+DEBUG - 2014-02-26 18:11:03 --> Template Class Initialized
+DEBUG - 2014-02-26 18:11:03 --> Config file loaded: application/config/ion_auth.php
+DEBUG - 2014-02-26 18:11:03 --> Email Class Initialized
+DEBUG - 2014-02-26 18:11:03 --> Language file loaded: language/english/ion_auth_lang.php
+DEBUG - 2014-02-26 18:11:03 --> Helper loaded: cookie_helper
+DEBUG - 2014-02-26 18:11:03 --> Session Class Initialized
+DEBUG - 2014-02-26 18:11:03 --> Helper loaded: string_helper
+DEBUG - 2014-02-26 18:11:03 --> Encrypt Class Initialized
+DEBUG - 2014-02-26 18:11:03 --> Session routines successfully run
+DEBUG - 2014-02-26 18:11:03 --> Model Class Initialized
+DEBUG - 2014-02-26 18:11:03 --> Model Class Initialized
+DEBUG - 2014-02-26 18:11:03 --> Helper loaded: date_helper
+DEBUG - 2014-02-26 18:11:03 --> Helper loaded: form_helper
+DEBUG - 2014-02-26 18:11:03 --> Form Validation Class Initialized
+DEBUG - 2014-02-26 18:11:04 --> Controller Class Initialized
+DEBUG - 2014-02-26 18:11:04 --> Helper loaded: html_helper
+DEBUG - 2014-02-26 18:11:04 --> Model Class Initialized
+DEBUG - 2014-02-26 18:11:04 --> Language file loaded: language/english/auth_lang.php
+DEBUG - 2014-02-26 18:11:04 --> Helper loaded: language_helper
+DEBUG - 2014-02-26 18:11:04 --> Final output sent to browser
+DEBUG - 2014-02-26 18:11:04 --> Total execution time: 3.4743
