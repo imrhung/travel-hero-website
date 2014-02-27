@@ -6,12 +6,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <div class="navbar-header"><a class="navbar-brand" href="<?php echo site_url() ?>">Travel Hero</a></div>
+        <div class="navbar-header"><a class="navbar-brand" href="<?php echo site_url() ?>">Travel Hero Admin</a></div>
         <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="<?php echo ($current_section == 'home') ? 'active' : '' ?>"><a href="<?php echo site_url('ngo') ?>">Home</a></li>
-                <li class="<?php echo ($current_section == 'page') ? 'active' : '' ?>"><a href="<?php echo site_url('quest') ?>">Quest</a></li>
-                <li class="<?php echo ($current_section == 'another-page') ? 'active' : '' ?>"><a href="<?php echo site_url('#') ?>">Community</a></li>
+            <ul class="nav navbar-nav side-nav">
+                <li class="<?php echo ($current_section == 'home') ? 'active' : '' ?>"><a href="<?php echo site_url('admin/index') ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="<?php echo ($current_section == 'quest') ? 'active' : '' ?>"><a href="<?php echo site_url('admin/questform') ?>"><i class="fa fa-edit"></i> Create Quest</a></li>
+                <li class="<?php echo ($current_section == 'partner') ? 'active' : '' ?>"><a href="<?php echo site_url('admin/partnerform') ?>"><i class="fa fa-edit"></i> Partner</a></li>
+                <li class="<?php echo ($current_section == 'quests') ? 'active' : '' ?>"><a href="<?php echo site_url('admin/questlist') ?>"><i class="fa fa-book"></i> Quests List</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
