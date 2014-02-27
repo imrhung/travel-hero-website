@@ -24,11 +24,13 @@ class Quest extends App_Controller {
     }
 
     function index() {
+        $this->page_title = 'Quest';
         $this->render_page('quest/index');
     }
     
     // For the display of an quest detail
     public function detail($id) {
+        $this->page_title = 'Quest Detail';
         $this->assets_css[] = "quest.css";
         $data['questId'] = $id;
         // call View
@@ -37,6 +39,7 @@ class Quest extends App_Controller {
     
     // Edit one quest
     public function edit($id) {
+        $this->page_title = 'Edit Quest';
         $this->assets_css[] = "quest.css";
         $data['questId'] = $id;
         // call View
@@ -46,7 +49,6 @@ class Quest extends App_Controller {
     /* Last Edit 17 Oct 2013 */
 
     public function questInfo() {
-        echo "me";
         //http://localhost:1337/travelhero/user/questInfo
         $result = array();
         $result['code'] = -1;

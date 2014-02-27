@@ -1,3 +1,5 @@
+<!-- <button class="btn btn-facebook"><i class="fa fa-facebook"></i> | Login with Facebook</button> -->
+
 <?php echo form_open('login', array('class' => 'form-signin')) ?>
 
 <h2 class="form-signin-heading">Please sign in</h2>

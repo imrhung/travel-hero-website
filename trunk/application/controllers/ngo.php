@@ -24,6 +24,7 @@ class Ngo extends App_Controller {
     }
 
     function index() {
+        $this->page_title = 'Quests List';
         $this->assets_css[] = "simplePagination.css";
         $this->assets_css[] = "ngo.css";
         $this->assets_js[] = "vendor/jquery.simplePagination.js";
