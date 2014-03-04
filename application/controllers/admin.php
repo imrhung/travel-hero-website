@@ -10,20 +10,18 @@ class Admin extends App_Controller {
 
     public function index() {
         $this->current_section = 'home';
-        $this->assets_css[] = "sb-admin.css";
+        $this->assets_css[] = "admin.css";
         $this->render_page('admin/index');
     }
     
     public function questform(){
         $this->current_section = 'quest';
-        $this->assets_css[] = "sb-admin.css";
         $this->assets_js[] = "core.js";
         $this->render_page('admin/questform');
     }
     
     public function partnerform(){
-        $this->current_section = 'partner';
-        $this->assets_css[] = "sb-admin.css";
+        $this->current_section = 'profile';
         $this->render_page('admin/partnerform');
     }
     
@@ -34,7 +32,6 @@ class Admin extends App_Controller {
         $this->assets_js[] = "vendor/jquery.simplePagination.js";
         $this->assets_js[] = "vendor/nhpopup.js";
         $this->current_section = 'quests';
-        $this->assets_css[] = "sb-admin.css";
         $this->render_page('admin/questlist');
     }
 }
