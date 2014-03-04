@@ -80,6 +80,7 @@ class App_Controller extends CI_Controller
             'bootstrap-responsive.min.css',
             'font-awesome.min.css',
             'sb-admin.css',
+            'hero.css',
             );
         $this->assets_js = array(
             'jquery-1.9.1.min.js',
