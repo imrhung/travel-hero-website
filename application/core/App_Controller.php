@@ -238,7 +238,7 @@ class App_Controller extends CI_Controller
         
         $this->template
             ->set_partial('flash_messages', 'partials/flash_messages')
-            ->set_partial('header_admin', 'partials/header_admin')
+            ->set_partial('header', 'partials/header_admin')
             ->set_partial('footer', 'partials/footer');
         
         // Renders the main layout
