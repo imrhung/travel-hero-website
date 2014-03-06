@@ -80,7 +80,7 @@ color: #fff;
 	position: fixed;
         top: auto;
 	bottom: 0px;
-        height: 150px;
+        height: 110px;
 	border-radius: 0;
 	border: none;
 	overflow-y: auto;
@@ -103,4 +103,10 @@ div#watermark {
 
 body{
     background-color: #F2F2F2;
+}
+
+.top-alert{
+    margin-left: 225px;
+    margin-bottom: 0px;
+    
 }

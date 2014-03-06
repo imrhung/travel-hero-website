@@ -14,6 +14,23 @@ class Organization extends App_Controller {
         $this->render_page('organization/index');
     }
     
+    public function create_activity(){
+        $this->current_section = 'activity';
+        $this->assets_css[] = 'admin.css';
+        $this->render_page("organization/create_activity");
+    }
+    
+    public function create_donation(){
+        $this->current_section = 'donation';
+        $this->assets_css[] = 'admin.css';
+        $this->render_page("organization/create_donation");
+    }
+    
+    public function create_quiz(){
+        $this->current_section = 'quiz';
+        $this->assets_css[] = 'admin.css';
+        $this->render_page("organization/create_quiz");
+    }
     public function questform(){
         $this->current_section = 'quest';
         $this->assets_js[] = "core.js";
@@ -34,4 +51,6 @@ class Organization extends App_Controller {
         $this->current_section = 'quests';
         $this->render_page('organization/questlist');
     }
+    
+    
 }
