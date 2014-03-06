@@ -19,7 +19,6 @@
                 
             </ul>
             <ul class="nav navbar-nav side-nav bottom-left-nav">
-                <li class="<?php echo ($current_section == 'settings') ? 'active' : '' ?>"><a href="<?php echo site_url('admin/index') ?>"><i class="fa fa-cog"></i>  Settings</a></li>
                 
                 <li class="<?php echo ($current_section == 'help') ? 'active' : '' ?>"><a href="<?php echo site_url('admin/index') ?>"><i class="fa fa-shield"></i>  Help me!</a></li>
                 <li class="<?php echo ($current_section == 'signout') ? 'active' : '' ?>"><a href="<?php echo site_url('admin/index') ?>"><i class="fa fa-power-off"></i>  Sign me out</a></li>
@@ -29,4 +28,8 @@
 </div>
 <div id="watermark">
     
+</div>
+<div class="alert alert-danger alert-dismissable top-alert">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <strong>Warning!</strong> Better check yourself, you're not looking too good.
 </div>

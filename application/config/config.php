@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/travelhero/';
+$config['base_url']	= 'http://travel.hero/';
 
 /*
 |--------------------------------------------------------------------------
